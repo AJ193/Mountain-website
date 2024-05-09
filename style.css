@@ -292,7 +292,6 @@ button {
 
   position: absolute;
   height: fit-content;
-  left: -15%;
   bottom: 15%;
   transform: translateZ(var(--z-offset));
   z-index: 2;
@@ -401,6 +400,7 @@ body {
   max-width: 100em;
   margin-top: 20px;
   transition: background-color var(--trans-dur), box-shadow var(--trans-dur);
+  opacity: 0.5;
 }
 .tab-bar__tabs {
   display: flex;
@@ -646,5 +646,17 @@ body {
   }
   80% {
     transform: translateX(-1px);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .description {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .description {
+    font-size: 20px;
   }
 }
