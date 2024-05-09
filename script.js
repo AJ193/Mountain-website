@@ -272,5 +272,74 @@ function change(direction) {
   };
 }
 
+
 // Start
 setup();
+
+"use strict";
+
+document.addEventListener("DOMContentLoaded", () => {
+    const tabbar = new TabBar("nav");
+});
+
+class TabBar {
+    constructor(el) {
+        this.el = document.querySelector(el);
+        this.el?.setAttribute("data-pristine", "true");
+        this.el?.addEventListener("click", this.switchTab.bind(this));
+    }
+
+    switchTab(e) {
+        // Your switchTab logic here
+        var _a, _b;
+        // allow animations, which were prevented on load
+        (_a = this.el) === null || _a === void 0 ? void 0 : _a.removeAttribute("data-pristine");
+        const target = e.target;
+        const href = target.getAttribute("href");
+        // target should be a link before assigning the “current” state
+        if (href) {
+            // remove the state from the current page…
+            const currentPage = (_b = this.el) === null || _b === void 0 ? void 0 : _b.querySelector(`[aria-current="page"]`);
+            if (currentPage) {
+                currentPage.ariaCurrent = null;
+            }
+            // …and apply it to the next
+            target.ariaCurrent = "page";
+    }
+  }
+}
+
+class Slider {
+  constructor(selector) {
+      this.slider = document.querySelector(selector);
+      this.slides = this.slider.querySelectorAll(".slide");
+      this.currentSlideIndex = 0;
+      this.startAutoPlay();
+  }
+
+  startAutoPlay() {
+      this.interval = setInterval(() => {
+          this.showNextSlide();
+      }, 1000); // Change slide every 5 seconds (5000 milliseconds)
+  }
+
+  stopAutoPlay() {
+      clearInterval(this.interval);
+  }
+
+  showNextSlide() {
+      this.slides[this.currentSlideIndex].classList.remove("data-current");
+      this.currentSlideIndex = (this.currentSlideIndex + 1) % this.slides.length;
+      this.slides[this.currentSlideIndex].classList.add("data-current");
+  }
+
+  showPrevSlide() {
+      this.slides[this.currentSlideIndex].classList.remove("data-current");
+
+      this.currentSlideIndex = (this.currentSlideIndex - 1 + this.slides.length) % this.slides.length;
+
+      this.slides[this.currentSlideIndex].classList.add("data-current");
+  }
+}
+
+const slider = new Slider(".slider");
