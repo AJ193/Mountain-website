@@ -660,3 +660,17 @@ body {
     font-size: 20px;
   }
 }
+
+
+.Intro {
+  margin-top: -12em;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-image: url("icy\ mountains.jpg");
+  background-size: cover;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* Set text color to transparent */
+  background-position: center;
+}
