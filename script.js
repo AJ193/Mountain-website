@@ -369,3 +369,70 @@ modals.forEach(function(modal, index) {
     }
   });
 });
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Get all image containers
+  const imageContainers = document.querySelectorAll(".dragging");
+
+  // Get previous and next buttons
+  const prevBtn = document.querySelector(".prev-btn");
+  const nextBtn = document.querySelector(".next-btn");
+
+  // Set initial index
+  let currentIndex = 0;
+
+  // Determine the maximum number of images to display based on device type
+  const maxImagesPC = 6; // Maximum number of images to display on PC
+  const maxImagesMobile = 1; // Maximum number of images to display on mobile
+
+  // Initially hide buttons if there are fewer images than the maximum
+  if (window.innerWidth >= 768 && imageContainers.length <= maxImagesPC) {
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
+  } else if (window.innerWidth < 768 && imageContainers.length <= maxImagesMobile) {
+    prevBtn.style.display = "none";
+    nextBtn.style.display = "none";
+  }
+
+  // Add event listeners to the buttons
+  prevBtn.addEventListener("click", showPrevImage);
+  nextBtn.addEventListener("click", showNextImage);
+
+  function showPrevImage() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      slideImages();
+    }
+  }
+
+  function showNextImage() {
+    if (currentIndex < imageContainers.length - 1) {
+      currentIndex++;
+      slideImages();
+    }
+  }
+
+  function slideImages() {
+    const offset = -currentIndex * 300; // Assuming each image has a width of 300px
+    imageContainers.forEach(function(container) {
+      container.style.transform = `translateX(${offset}px)`;
+    });
+  }
+
+  // Event listener to update navigation buttons on window resize
+  window.addEventListener("resize", function() {
+    if (window.innerWidth >= 768 && imageContainers.length > maxImagesPC) {
+      prevBtn.style.display = "block";
+      nextBtn.style.display = "block";
+    } else if (window.innerWidth < 768 && imageContainers.length > maxImagesMobile) {
+      prevBtn.style.display = "block";
+      nextBtn.style.display = "block";
+    } else {
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "none";
+    }
+  });
+});
+
