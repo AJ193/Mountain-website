@@ -320,7 +320,7 @@ class Slider {
   startAutoPlay() {
       this.interval = setInterval(() => {
           this.showNextSlide();
-      }, 1000); // Change slide every 5 seconds (5000 milliseconds)
+      }, 5000); // Change slide every 5 seconds (5000 milliseconds)
   }
 
   stopAutoPlay() {
@@ -343,3 +343,29 @@ class Slider {
 }
 
 const slider = new Slider(".slider");
+// Get all modals
+var modals = document.querySelectorAll('.modal');
+
+// Loop through each modal
+modals.forEach(function(modal, index) {
+  // Get the image and insert it inside the modal - use its "alt" text as a caption
+  var images = document.querySelectorAll('.myImg');
+  var modalImg = modal.querySelector('.modal-content');
+  var captionText = modal.querySelector('.caption');
+
+  images[index].onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+  }
+
+  // Get the <span> element that closes the modal
+  var spans = modal.querySelectorAll('.close');
+
+  // Loop through each close button for this modal
+  spans.forEach(function(span) {
+    span.onclick = function() { 
+      modal.style.display = "none";
+    }
+  });
+});
