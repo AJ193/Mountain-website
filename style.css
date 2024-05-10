@@ -775,6 +775,7 @@ body {
 @media only screen and (max-width: 700px) {
   .modal-content {
     width: 100%;
+    padding: 20px;
   }
 }
 
@@ -810,7 +811,7 @@ body {
 /* Adjust gap between image containers */
 .Img-cards {
   display: inline-flex;
+  justify-content: center;
   gap: 10px; /* Adjust the gap as needed */
-  right:50px ;
-
 }
+
