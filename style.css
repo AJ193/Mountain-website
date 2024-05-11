@@ -188,14 +188,7 @@ button {
   overflow: hidden;
 }
 
-@media only screen and (max-width: 767px) {
-  .slide--image__wrapper {
-    position: relative;
-    width: 110%;
-    height: 150%;
-    overflow: hidden;
-  }
-}
+
 
 .slide--image {
   width: 100%;
@@ -401,16 +394,6 @@ body {
   margin-top: 20px;
   transition: background-color var(--trans-dur), box-shadow var(--trans-dur);
   opacity: 0.5;
-}
-
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-  .tab-bar {
-    width: calc(100% - 1em); /* Adjust as needed for smaller screens */
-    max-width: none;
-    border-radius: 1em; /* Adjust as needed for smaller screens */
-    margin-top: 10px; /* Adjust as needed for smaller screens */
-  }
 }
 
 /* Additional Media Queries and Adjustments for Other Screen Sizes */
@@ -662,17 +645,6 @@ body {
   }
 }
 
-@media only screen and (max-width: 767px) {
-  .description {
-    font-size: 12px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .description {
-    font-size: 20px;
-  }
-}
 
 
 .Intro {
@@ -689,14 +661,9 @@ body {
   font-size: 120px;
 }
 
-/* Mobile styling for .Intro */
-@media only screen and (max-width: 768px) {
-  .Intro {
-    font-size: 40px;
-  }
-}
 
 
+/* PC Styles */
 /* Image Styling */
 .myImg {
   border-radius: 5px;
@@ -771,38 +738,40 @@ body {
   cursor: pointer;
 }
 
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px) {
-  .modal-content {
-    width: 100%;
-    padding: 20px;
-  }
-}
-
 /* Style previous and next buttons */
 .prev-btn,
 .next-btn {
-  position: absolute;
-  top: 76%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.5);
-  border: none;
-  color: black;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 7px;
-  z-index: 1;
-  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+    position: absolute;
+    top: 76%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    color: black;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 7px;
+    z-index: 1;
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
+    display: flexbox; /* Initially hide the buttons */
 }
 
 .prev-btn {
-  left: 0;
+    left: 0;
 }
 
 .next-btn {
-  right: 0;
+    right: 0;
 }
 
+/* Show buttons on screens less than 767px */
+@media only screen and (max-width: 767px) {
+  .prev-btn,
+  .next-btn {
+    display: inline-flex;
+  }
+}
+
+/* Mobile Styles */
 /* Animation for image containers */
 .dragging {
   transition: transform 1.5s ease-in-out; /* Smooth transition for transform */
@@ -815,3 +784,70 @@ body {
   gap: 10px; /* Adjust the gap as needed */
 }
 
+/* Default Font Size */
+.description {
+  font-size: 20px; /* Default font size */
+}
+
+/* Adjusting Font Size for Smaller Screens */
+@media only screen and (max-width: 767px) {
+  .description {
+    font-size: 12px; /* Font size for screens up to 767px */
+  }
+}
+
+/* Adjusting Font Size for Larger Screens */
+@media only screen and (min-width: 768px) {
+  .description {
+    font-size: 20px; /* Font size for screens starting from 768px */
+  }
+}
+
+/* Image Width and Padding for Smaller Screens */
+@media only screen and (max-width: 700px) {
+  .modal-content {
+    width: 100%; /* 100% width for screens up to 700px */
+    padding: 20px; /* Padding adjustment */
+  }
+}
+
+/* Image Wrapper Adjustment for Smaller Screens */
+@media only screen and (max-width: 767px) {
+  .slide--image__wrapper {
+    width: 100%; /* Width adjustment for screens up to 767px */
+    height: auto; /* Reset height for responsiveness */
+    overflow: hidden;
+  }
+}
+
+/* Mobile styling for .Intro */
+@media only screen and (max-width: 767px) {
+  .Intro {
+    font-size: 5.5vh; /* Font size adjustment for smaller screens */
+    text-align: center; /* Align text to the center */
+    margin: 0 auto; /* Center the element horizontally */
+    position: relative;
+    left: 0; /* Reset left position */
+  }
+}
+
+/* Slider Responsiveness */
+@media only screen and (max-width: 1100px) {
+  .slider {
+    width: 100%; /* Full width for smaller screens */
+  }
+
+  .slide {
+    width: 100%; /* Full width for each slide */
+    aspect-ratio: 16/9; /* Adjust aspect ratio for slides if needed */
+  }
+
+  .tab-bar {
+    width: 100%;
+    max-width: none; /* Remove max-width restriction */
+    border-radius: 0.5em; /* Border radius adjustment */
+    margin-top: 10px; /* Margin adjustment */
+  }
+
+  /* Adjust other styles as needed */
+}

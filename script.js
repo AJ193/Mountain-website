@@ -384,17 +384,11 @@ document.addEventListener("DOMContentLoaded", function() {
   let currentIndex = 0;
 
   // Determine the maximum number of images to display based on device type
-  const maxImagesPC = 6; // Maximum number of images to display on PC
+  const maxImagesPC = 7; // Maximum number of images to display on PC
   const maxImagesMobile = 1; // Maximum number of images to display on mobile
 
   // Initially hide buttons if there are fewer images than the maximum
-  if (window.innerWidth >= 768 && imageContainers.length <= maxImagesPC) {
-    prevBtn.style.display = "none";
-    nextBtn.style.display = "none";
-  } else if (window.innerWidth < 768 && imageContainers.length <= maxImagesMobile) {
-    prevBtn.style.display = "none";
-    nextBtn.style.display = "none";
-  }
+  updateButtonVisibility();
 
   // Add event listeners to the buttons
   prevBtn.addEventListener("click", showPrevImage);
@@ -422,17 +416,25 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Event listener to update navigation buttons on window resize
-  window.addEventListener("resize", function() {
-    if (window.innerWidth >= 768 && imageContainers.length > maxImagesPC) {
-      prevBtn.style.display = "block";
-      nextBtn.style.display = "block";
-    } else if (window.innerWidth < 768 && imageContainers.length > maxImagesMobile) {
-      prevBtn.style.display = "block";
-      nextBtn.style.display = "block";
-    } else {
-      prevBtn.style.display = "none";
-      nextBtn.style.display = "none";
-    }
-  });
-});
+  window.addEventListener("resize", updateButtonVisibility);
 
+  function updateButtonVisibility() {
+    if (window.innerWidth >= 768) {
+      if (imageContainers.length > maxImagesPC) {
+        prevBtn.style.display = "block";
+        nextBtn.style.display = "block";
+      } else {
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
+      }
+    } else {
+      if (imageContainers.length > maxImagesMobile) {
+        prevBtn.style.display = "block";
+        nextBtn.style.display = "block";
+      } else {
+        prevBtn.style.display = "none";
+        nextBtn.style.display = "none";
+      }
+    }
+  }
+});
